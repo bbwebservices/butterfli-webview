@@ -19,19 +19,17 @@ gulp.task('watchify', function () {
 	return watcher
 		.on('update', function () {
 			watcher.bundle()
-				.on('error', function () {
+				.on('error', function (err) {
 					console.log('There was an error compiling', err.message);
 				})
 				.pipe(source('bundle.js'))
-				.pipe(streamify(uglify()))
 				.pipe(gulp.dest('./dest/'));
 		})
 		.bundle()
-		.on('error', function () {
+		.on('error', function (err) {
 			console.log('There was an error compiling', err.message);
 		})
 		.pipe(source('bundle.js'))
-		.pipe(streamify(uglify()))
 		.pipe(gulp.dest('./dest/'));
 });
 
