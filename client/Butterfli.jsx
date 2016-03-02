@@ -42,18 +42,16 @@ var Butterfli = React.createClass({
 	render: function (){
 
 		// check if logged in, render appropriate component
-		var loginRoute = function () {
-			if(this.state.isLoggedIn) {
-				return (<AccountHome username={this.state.username} />)
-			} else if (!this.state.isLoggedIn) {
-				return (<Login updateCreds={this.updateCreds} />)
-			}
-		}.bind(this)
-
 
 		return (
 			<div>
-				{loginRoute()}
+				{/* renders a child depending on the path, then passes App's props to that child. */}
+				{this.props.children && React.cloneElement(this.props.children, {
+						isLoggedIn: this.state.isLoggedIn,
+						updateCreds: this.updateCreds,
+						username: this.state.username
+					})
+				}
 			</div>
 		)
 	}
