@@ -1,5 +1,6 @@
 var React = require('react'),
 	ReactDOM = require('react-dom'),
+	request = require('request'),
     Login = require('./components/Login.jsx'),
     AccountHome = require('./components/AccountHome.jsx');
 
@@ -25,7 +26,7 @@ var Butterfli = React.createClass({
 			resolve(this.state.password)
 		}.bind(this)).then(function(value) {
 
-			// send login request
+			// send login request after username and password are saved
 			this.checkCreds();
 		}.bind(this));
 	},
